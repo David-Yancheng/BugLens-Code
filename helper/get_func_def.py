@@ -225,7 +225,6 @@ def read_func(file_path: str, line_no, proj_path, real_lineno=None):
 def read_func_first_line(file_path: str, line_no, proj_path):
     file_path = file_path.lstrip('/') # remove the leading slash
     real_file_path = os.path.join(proj_path, file_path)
-    print(f"DEBUG: proj_path='{proj_path}', file_path='{file_path}', real_file_path='{real_file_path}'") 
     with open(real_file_path, 'r', errors='ignore') as f:
         lines = f.readlines()
         return lines[line_no - 1]
