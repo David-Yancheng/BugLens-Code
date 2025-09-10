@@ -134,7 +134,6 @@ def get_number_of_tabs(line):
 def read_line_with_previous_part(file_path: str, line_no, proj_path):
     if file_path.startswith("source/"):
         file_path = file_path[7:]
-    file_path = file_path.lstrip('/') # remove the leading slash
     with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
         lines = f.readlines()
         # return lines[line_no-1]
@@ -192,7 +191,6 @@ def __is_marco_expend(line):
 
 def read_marco(file_path: str, line_no, proj_path):
     # from the first line, read until line ends not with '\'
-    file_path = file_path.lstrip('/') # remove the leading slash
     with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
         lines = f.readlines()
         real_lineno = line_no - 1
@@ -223,7 +221,6 @@ def read_func(file_path: str, line_no, proj_path, real_lineno=None):
     return func_def
 
 def read_func_first_line(file_path: str, line_no, proj_path):
-    file_path = file_path.lstrip('/') # remove the leading slash
     real_file_path = os.path.join(proj_path, file_path)
     with open(real_file_path, 'r', errors='ignore') as f:
         lines = f.readlines()
@@ -284,7 +281,6 @@ def get_func_start_line(file_path: str, line_no, proj_path):
             return real_lineno
 
         # find the start line of the function
-        file_path = file_path.lstrip('/') # remove the leading slash
         with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
             lines = f.readlines()
             if __is_marco_expend(lines[line_no - 1]):
@@ -330,7 +326,6 @@ def __read_func(file_path: str, line_number, proj_path):
             func_def, comment_start = cache[cache_key]
             return func_def, comment_start
         
-    file_path = file_path.lstrip('/') # remove the leading slash
     with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
         lines = f.readlines()
         
@@ -403,7 +398,6 @@ def read_struct_def(file_path: str, line_no, proj_path):
             return real_lineno
 
         # find the start line of the struct
-        file_path = file_path.lstrip('/') # remove the leading slash
         with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
             lines = f.readlines()
             real_lineno = line_no - 1;
@@ -433,7 +427,6 @@ def read_global_var(file_path, line_no, proj_path):
             return real_lineno
 
         # find the start line of the struct
-        file_path = file_path.lstrip('/') # remove the leading slash
         with open(os.path.join(proj_path, file_path), 'r', errors='ignore') as f:
             lines = f.readlines()
             real_lineno = line_no - 1;
